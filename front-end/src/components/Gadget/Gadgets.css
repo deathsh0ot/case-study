@@ -1,0 +1,6 @@
+.rightPanel {
+    float: right;
+    margin-top: 50px;
+    border-style: hidden hidden hidden groove;
+    padding-left: 40px;
+}
