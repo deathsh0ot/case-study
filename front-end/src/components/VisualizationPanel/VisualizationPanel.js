@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import uploadIcon from "../../images/uploadIcon.png";
 import "./VisualizationPanel.css";
 import PieChart from "../charts/pieChart/PieChart";
@@ -8,7 +8,7 @@ import FunnelChart from "../charts/funnelChart/FunnelChart";
 export default function VisualizationPanel({ chartType, setSelectedChart }) {
   const [type, setType] = React.useState(false);
   const [showChart, setShowChart] = React.useState(false);
-
+  const [expand, setExpand] = useState(false);
   const displayChart = () => {
     if (chartType) {
       setType(chartType);
@@ -20,18 +20,30 @@ export default function VisualizationPanel({ chartType, setSelectedChart }) {
     setShowChart(false);
     setType(null);
   };
+
   return (
-    <div className="graphPanel" onMouseUp={(e) => displayChart()}>
+    <div
+      className={expand ? "expandedPanel" : "graphPanel"}
+      onMouseUp={(e) => displayChart()}
+    >
       {showChart ? (
         <>
-          <button>expand</button>
           <button
             onClick={() => {
-              deleteChart();
+              setExpand(!expand);
             }}
           >
-            delete
+            {expand ? "exit" : "expand"}
           </button>
+          {!expand ? (
+            <button
+              onClick={() => {
+                deleteChart();
+              }}
+            >
+              delete
+            </button>
+          ) : null}
           {type == "line" ? (
             <ColumnChart />
           ) : type == "pie" ? (
