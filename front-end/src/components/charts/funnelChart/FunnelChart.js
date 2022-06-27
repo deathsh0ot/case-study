@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./FunnelChart.css";
 import axios from "axios";
 import {
   FunnelChart as FunnelC,
@@ -8,12 +7,14 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import "./FunnelChart.css";
 
 export default function FunnelChart() {
   const [data, setData] = useState([]);
 
+  // fetching data
   useEffect(() => {
-    axios.get("http://localhost:8080/api/data").then((res) => {
+    axios.get("https://localhost:8080/api/data").then((res) => {
       setData(
         res.data
           .map((e) => {

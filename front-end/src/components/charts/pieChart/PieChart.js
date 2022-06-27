@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "./PieChart.css";
-import axios from "axios";
 import { PieChart as PieC, Pie, Cell, ResponsiveContainer } from "recharts";
+import axios from "axios";
+import "./PieChart.css";
 
 export default function PieChart() {
   const [data, setData] = useState([]);
 
+  // fetching data
   useEffect(() => {
-    axios.get("http://localhost:8080/api/data").then((res) => {
+    axios.get("https://localhost:8080/api/data").then((res) => {
       setData(res.data);
     });
   }, []);
@@ -15,6 +16,7 @@ export default function PieChart() {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   const RADIAN = Math.PI / 180;
+
   const renderCustomizedLabel = ({
     cx,
     cy,
@@ -39,6 +41,7 @@ export default function PieChart() {
       </text>
     );
   };
+
   return (
     <ResponsiveContainer width="100%" height="90%">
       <PieC>

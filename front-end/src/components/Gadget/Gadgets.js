@@ -5,10 +5,12 @@ import funnelChart from "../../images/funnelChart.png";
 import "./Gadgets.css";
 
 export default function Gadgets({ setSelectedChart }) {
+  // function for setting the selected chart type
   const select = (e, type) => {
     e.preventDefault();
     setSelectedChart(type);
   };
+
   return (
     <div className="rightPanel" onMouseUp={() => setSelectedChart(null)}>
       <p>

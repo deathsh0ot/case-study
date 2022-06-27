@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./ColumnChart.css";
 import axios from "axios";
 import {
   BarChart,
@@ -11,12 +10,14 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import "./ColumnChart.css";
 
 export default function ColumnChart() {
   const [data, setData] = useState([]);
 
+  // fetching data
   useEffect(() => {
-    axios.get("http://localhost:8080/api/data").then((res) => {
+    axios.get("https://localhost:8080/api/data").then((res) => {
       setData(res.data);
     });
   }, []);

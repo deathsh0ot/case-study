@@ -1,17 +1,19 @@
 import React, { useState } from "react";
+import PieChart from "../charts/pieChart/PieChart";
+import ColumnChart from "../charts/columnChart/ColumnChart";
+import FunnelChart from "../charts/funnelChart/FunnelChart";
 import uploadIcon from "../../images/uploadIcon.png";
 import deleteIcon from "../../images/deleteIcon.png";
 import expandIcon from "../../images/expandIcon.png";
 import collapseIcon from "../../images/collapseIcon.png";
 import "./VisualizationPanel.css";
-import PieChart from "../charts/pieChart/PieChart";
-import ColumnChart from "../charts/columnChart/ColumnChart";
-import FunnelChart from "../charts/funnelChart/FunnelChart";
 
 export default function VisualizationPanel({ chartType, setSelectedChart }) {
   const [type, setType] = React.useState(false);
   const [showChart, setShowChart] = React.useState(false);
   const [expand, setExpand] = useState(false);
+
+  // function for displaying the chart if the chartType variable isn't null
   const displayChart = () => {
     if (chartType) {
       setType(chartType);
@@ -19,6 +21,8 @@ export default function VisualizationPanel({ chartType, setSelectedChart }) {
     }
     setSelectedChart(null);
   };
+
+  //function for deleting the displayed chart from the panel
   const deleteChart = () => {
     setShowChart(false);
     setType(null);
