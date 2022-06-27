@@ -2,5 +2,14 @@
     float: right;
     margin-top: 50px;
     border-style: hidden hidden hidden groove;
+    margin-right: 30px;
     padding-left: 40px;
+
+}
+.button{
+    background-color: #497df5;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    min-width: 90px;
 }

@@ -23,7 +23,7 @@ export default function Gadgets({ setSelectedChart }) {
         />
         Pie Chart
         <br />
-        <button>Add</button>
+        <button className="button">Add</button>
       </div>
       <div>
         <img
@@ -34,7 +34,7 @@ export default function Gadgets({ setSelectedChart }) {
           onMouseDown={(e) => select(e, "line")}
         />
         Line Chart <br />
-        <button>Add</button>
+        <button className="button">Add</button>
       </div>
       <div>
         <img
@@ -46,7 +46,7 @@ export default function Gadgets({ setSelectedChart }) {
         />
         Funnel Chart
         <br />
-        <button>Add</button>
+        <button className="button">Add</button>
       </div>
     </div>
   );

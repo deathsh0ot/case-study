@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import uploadIcon from "../../images/uploadIcon.png";
+import deleteIcon from "../../images/deleteIcon.png";
+import expandIcon from "../../images/expandIcon.png";
+import collapseIcon from "../../images/collapseIcon.png";
 import "./VisualizationPanel.css";
 import PieChart from "../charts/pieChart/PieChart";
 import ColumnChart from "../charts/columnChart/ColumnChart";
@@ -33,7 +36,11 @@ export default function VisualizationPanel({ chartType, setSelectedChart }) {
               setExpand(!expand);
             }}
           >
-            {expand ? "exit" : "expand"}
+            {expand ? (
+              <img src={collapseIcon} alt="exit" height="20px" width="20px" />
+            ) : (
+              <img src={expandIcon} alt="expand" height="20px" width="20px" />
+            )}
           </button>
           {!expand ? (
             <button
@@ -41,7 +48,7 @@ export default function VisualizationPanel({ chartType, setSelectedChart }) {
                 deleteChart();
               }}
             >
-              delete
+              <img src={deleteIcon} alt="delete" height="20px" width="20px" />
             </button>
           ) : null}
           {type == "line" ? (
@@ -54,9 +61,17 @@ export default function VisualizationPanel({ chartType, setSelectedChart }) {
         </>
       ) : (
         <>
-          <img src={uploadIcon} alt="drop here" height={60} width={60} />
+          <img
+            src={uploadIcon}
+            alt="drop here"
+            height={60}
+            width={60}
+            className="uploadSpace"
+          />
+          <p>
+            Drag a gadget to this column or <a href="/">add a new one</a>
+          </p>
           <br />
-          Drag a gadget to this column or <a href="/">add a new one</a>
         </>
       )}
     </div>

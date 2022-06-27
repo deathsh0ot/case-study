@@ -14,14 +14,24 @@ export default function FunnelChart() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/data").then((res) => {
-      console.log(res);
-      setData(
-        res.data.map((e) => {
-          return { ...e, fill: e.color };
-        })
-      );
-    });
+    axios
+      .get("http://localhost:8080/api/data")
+      .then((res) => {
+        console.log(res);
+        setData(
+          res.data
+            .map((e) => {
+              return { ...e, fill: e.color };
+            })
+            .sort((a, b) => {
+              return b.temperature - a.temperature;
+
+              console.log("a", a);
+              console.log("b", b);
+            })
+        );
+      })
+      .then(() => console.log("this ", data));
   }, []);
 
   return (
@@ -30,7 +40,7 @@ export default function FunnelChart() {
         <Tooltip />
         <Funnel dataKey="temperature" data={data} isAnimationActive>
           <LabelList
-            position="right"
+            position="center"
             fill="#000"
             stroke="none"
             dataKey="time"

@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "build": "cd ../front-end && npm run build",
+    "install-front": "cd ../front-end && npm install",
+    "heroku-postbuild":"npm run install-front && npm run build"
   },
   "author": "",
   "license": "",
