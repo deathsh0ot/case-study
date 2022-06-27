@@ -11,5 +11,12 @@
     display: inline-block;
     font-size: 16px;
     border-radius: 5px;
-    min-width: 90px;
+    min-width: 40px;
+    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.chart {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

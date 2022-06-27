@@ -27,30 +27,33 @@ export default function VisualizationPanel({ chartType, setSelectedChart }) {
   return (
     <div
       className={expand ? "expandedPanel" : "graphPanel"}
-      onMouseUp={(e) => displayChart()}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => displayChart()}
     >
       {showChart ? (
         <>
-          <button
-            onClick={() => {
-              setExpand(!expand);
-            }}
-          >
-            {expand ? (
-              <img src={collapseIcon} alt="exit" height="20px" width="20px" />
-            ) : (
-              <img src={expandIcon} alt="expand" height="20px" width="20px" />
-            )}
-          </button>
-          {!expand ? (
+          <div className="utils">
             <button
               onClick={() => {
-                deleteChart();
+                setExpand(!expand);
               }}
             >
-              <img src={deleteIcon} alt="delete" height="20px" width="20px" />
+              {expand ? (
+                <img src={collapseIcon} alt="exit" height="20px" width="20px" />
+              ) : (
+                <img src={expandIcon} alt="expand" height="20px" width="20px" />
+              )}
             </button>
-          ) : null}
+            {!expand ? (
+              <button
+                onClick={() => {
+                  deleteChart();
+                }}
+              >
+                <img src={deleteIcon} alt="delete" height="20px" width="20px" />
+              </button>
+            ) : null}
+          </div>
           {type == "line" ? (
             <ColumnChart />
           ) : type == "pie" ? (

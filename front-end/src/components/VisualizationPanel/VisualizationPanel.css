@@ -2,7 +2,7 @@
     border-style: groove;
     float: left;
     margin-top: 50px;
-    width: 40%;
+    width: 38%;
     height: 500px;
 }
 .expandedPanel{
@@ -26,4 +26,14 @@
 
 p{
     text-align: center;
+}
+
+.utils{
+    text-align: end;
+    
+}
+
+button{
+    background: transparent;
+    border: 0;
 }

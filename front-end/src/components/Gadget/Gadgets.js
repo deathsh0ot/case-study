@@ -11,40 +11,42 @@ export default function Gadgets({ setSelectedChart }) {
   };
   return (
     <div className="rightPanel" onMouseUp={() => setSelectedChart(null)}>
-      Add a Gadget
-      <div>
+      <p>
+        <b>Add a Gadget</b>
+      </p>
+      <div className="chart">
         <br />
         <img
           src={pieChart}
           alt="pie"
-          height={60}
-          width={60}
-          onMouseDown={(e) => select(e, "pie")}
+          height={70}
+          width={"40%"}
+          onDrag={(e) => select(e, "pie")}
         />
-        Pie Chart
+        <span style={{ marginLeft: "15px " }}>Pie Chart</span>
         <br />
         <button className="button">Add</button>
       </div>
-      <div>
+      <div className="chart">
         <img
           src={lineChart}
           alt="line"
           height={60}
-          width={60}
-          onMouseDown={(e) => select(e, "line")}
+          width={"40%"}
+          onDrag={(e) => select(e, "line")}
         />
-        Line Chart <br />
+        <span style={{ marginLeft: "15px " }}>Line Chart</span> <br />
         <button className="button">Add</button>
       </div>
-      <div>
+      <div className="chart">
         <img
           src={funnelChart}
           alt="funnel"
           height={60}
-          width={60}
-          onMouseDown={(e) => select(e, "funnel")}
+          width={"40%"}
+          onDrag={(e) => select(e, "funnel")}
         />
-        Funnel Chart
+        <span style={{ marginLeft: "15px " }}>Funnel Chart</span>
         <br />
         <button className="button">Add</button>
       </div>

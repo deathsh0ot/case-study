@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./PieChart.css";
 import axios from "axios";
-import {
-  PieChart as PieC,
-  Pie,
-  Sector,
-  Cell,
-  ResponsiveContainer,
-} from "recharts";
+import { PieChart as PieC, Pie, Cell, ResponsiveContainer } from "recharts";
 
 export default function PieChart() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/data").then((res) => {
-      console.log(res);
       setData(res.data);
     });
   }, []);
@@ -29,7 +22,6 @@ export default function PieChart() {
     innerRadius,
     outerRadius,
     percent,
-    index,
   }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -48,7 +40,7 @@ export default function PieChart() {
     );
   };
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height="90%">
       <PieC>
         <Pie
           data={data}

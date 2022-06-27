@@ -6,8 +6,6 @@ import VisualizationPanel from "../../components/VisualizationPanel/Visualizatio
 export default function MainPage() {
   const [selectedChart, setSelectedChart] = useState(null);
 
-  console.log(selectedChart);
-
   return (
     <div className="App">
       <VisualizationPanel
