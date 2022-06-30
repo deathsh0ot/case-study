@@ -1,11 +1,25 @@
-.rightPanel {
-    float: right;
-    margin-top: 50px;
-    border-style: hidden hidden hidden groove;
-    margin-right: 30px;
-    padding-left: 40px;
-
+@media screen  and (max-width: 760px){
+    .rightPanel {
+        float: right;
+        margin-top: 50px;
+        border-style: hidden hidden hidden groove;
+        /* margin-right: 30px; */
+        padding-left: 10px;
+        max-width: 27%;
+    }    
 }
+
+@media screen  and (min-width: 761px){
+    .rightPanel {
+        float: right;
+        margin-top: 50px;
+        border-style: hidden hidden hidden groove;
+        margin-right: 20px;
+        padding-left: 30px;
+        max-width: 15%;
+    }    
+}
+
 .button{
     background-color: #497df5;
     display: inline-block;
@@ -19,4 +33,8 @@
 .chart {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+img{
+    touch-action: none;
+    user-select: none;
 }

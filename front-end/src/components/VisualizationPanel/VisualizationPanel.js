@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Droppable } from "react-beautiful-dnd";
 import PieChart from "../charts/pieChart/PieChart";
 import ColumnChart from "../charts/columnChart/ColumnChart";
 import FunnelChart from "../charts/funnelChart/FunnelChart";
@@ -8,10 +9,20 @@ import expandIcon from "../../images/expandIcon.png";
 import collapseIcon from "../../images/collapseIcon.png";
 import "./VisualizationPanel.css";
 
-export default function VisualizationPanel({ chartType, setSelectedChart }) {
-  const [type, setType] = React.useState(false);
-  const [showChart, setShowChart] = React.useState(false);
+export default function VisualizationPanel({
+  chartType,
+  setSelectedChart,
+  id,
+  onDrop,
+  refresh,
+}) {
+  const [type, setType] = useState(false);
+  const [showChart, setShowChart] = useState(false);
   const [expand, setExpand] = useState(false);
+
+  useEffect(() => {
+    if (onDrop == id && chartType) displayChart();
+  }, [refresh]);
 
   // function for displaying the chart if the chartType variable isn't null
   const displayChart = () => {
@@ -21,7 +32,6 @@ export default function VisualizationPanel({ chartType, setSelectedChart }) {
     }
     setSelectedChart(null);
   };
-
   //function for deleting the displayed chart from the panel
   const deleteChart = () => {
     setShowChart(false);
@@ -29,58 +39,86 @@ export default function VisualizationPanel({ chartType, setSelectedChart }) {
   };
 
   return (
-    <div
-      className={expand ? "expandedPanel" : "graphPanel"}
-      onDragOver={(e) => e.preventDefault()}
-      onDrop={(e) => displayChart()}
-    >
-      {showChart ? (
-        <>
-          <div className="utils">
-            <button
-              onClick={() => {
-                setExpand(!expand);
-              }}
-            >
-              {expand ? (
-                <img src={collapseIcon} alt="exit" height="20px" width="20px" />
-              ) : (
-                <img src={expandIcon} alt="expand" height="20px" width="20px" />
-              )}
-            </button>
-            {!expand ? (
-              <button
-                onClick={() => {
-                  deleteChart();
-                }}
-              >
-                <img src={deleteIcon} alt="delete" height="20px" width="20px" />
-              </button>
-            ) : null}
-          </div>
-          {type == "line" ? (
-            <ColumnChart />
-          ) : type == "pie" ? (
-            <PieChart />
-          ) : type == "funnel" ? (
-            <FunnelChart />
-          ) : null}
-        </>
-      ) : (
-        <>
-          <img
-            src={uploadIcon}
-            alt="drop here"
-            height={60}
-            width={60}
-            className="uploadSpace"
-          />
-          <p>
-            Drag a gadget to this column or <a href="/">add a new one</a>
-          </p>
-          <br />
-        </>
+    <Droppable droppableId={id} type="graph">
+      {(provided, snapshot) => (
+        <div
+          className={expand ? "expandedPanel" : "graphPanel"}
+          onPointerUp={(e) => {
+            displayChart();
+          }}
+          onTouchEnd={() => {
+            displayChart();
+          }}
+          ref={provided.innerRef}
+          style={{
+            backgroundColor: snapshot.isDraggingOver ? "blue" : "white",
+          }}
+          {...provided.droppableProps}
+        >
+          {showChart ? (
+            <>
+              <div className="utils">
+                <button
+                  onClick={() => {
+                    setExpand(!expand);
+                  }}
+                >
+                  {expand ? (
+                    <img
+                      src={collapseIcon}
+                      alt="exit"
+                      height="20px"
+                      width="20px"
+                    />
+                  ) : (
+                    <img
+                      src={expandIcon}
+                      alt="expand"
+                      height="20px"
+                      width="20px"
+                    />
+                  )}
+                </button>
+                {!expand ? (
+                  <button
+                    onClick={() => {
+                      deleteChart();
+                    }}
+                  >
+                    <img
+                      src={deleteIcon}
+                      alt="delete"
+                      height="20px"
+                      width="20px"
+                    />
+                  </button>
+                ) : null}
+              </div>
+              {type == "line" ? (
+                <ColumnChart />
+              ) : type == "pie" ? (
+                <PieChart />
+              ) : type == "funnel" ? (
+                <FunnelChart />
+              ) : null}
+            </>
+          ) : (
+            <>
+              <img
+                src={uploadIcon}
+                alt="drop here"
+                height={60}
+                width={60}
+                className="uploadSpace"
+              />
+              <p>
+                Drag a gadget to this column or <a href="/">add a new one</a>
+              </p>
+              <br />
+            </>
+          )}
+        </div>
       )}
-    </div>
+    </Droppable>
   );
 }
