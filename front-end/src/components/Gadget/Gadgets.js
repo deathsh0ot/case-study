@@ -5,10 +5,10 @@ import lineChart from "../../images/lineChart.png";
 import funnelChart from "../../images/funnelChart.png";
 import "./Gadgets.css";
 
-export default function Gadgets({ setSelectedChart, setId }) {
+export default function Gadgets({ setSelectedChart }) {
   // function for setting the selected chart type
   const select = (e, type) => {
-    e.preventDefault();
+    //e.preventDefault();
     setSelectedChart(type);
   };
 
@@ -17,14 +17,14 @@ export default function Gadgets({ setSelectedChart, setId }) {
       {(provided, snapshot) => (
         <div
           className="rightPanel"
-          onPointerUp={() => setSelectedChart(null)}
           ref={provided.innerRef}
           {...provided.droppableProps}
+          onMouseUp={() => setSelectedChart(null)}
         >
           <p>
             <b>Add a Gadget</b>
           </p>
-          <Draggable draggableId="draggable-1" index={0}>
+          <Draggable draggableId="draggable-1" index={1}>
             {(provided, snapshot) => (
               <div
                 className="chart"
@@ -32,7 +32,6 @@ export default function Gadgets({ setSelectedChart, setId }) {
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
               >
-                <br />
                 <img
                   src={pieChart}
                   alt="pie"
@@ -49,7 +48,7 @@ export default function Gadgets({ setSelectedChart, setId }) {
               </div>
             )}
           </Draggable>
-          <Draggable draggableId="draggable-2" index={1}>
+          <Draggable draggableId="draggable-2" index={2}>
             {(provided, snapshot) => (
               <div
                 className="chart"
@@ -72,7 +71,7 @@ export default function Gadgets({ setSelectedChart, setId }) {
               </div>
             )}
           </Draggable>
-          <Draggable draggableId="draggable-3" index={2}>
+          <Draggable draggableId="draggable-3" index={3}>
             {(provided, snapshot) => (
               <div
                 className="chart"

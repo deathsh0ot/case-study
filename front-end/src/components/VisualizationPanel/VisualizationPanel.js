@@ -46,7 +46,7 @@ export default function VisualizationPanel({
           onPointerUp={(e) => {
             displayChart();
           }}
-          onTouchEnd={() => {
+          onTouchEnd={(e) => {
             displayChart();
           }}
           ref={provided.innerRef}
