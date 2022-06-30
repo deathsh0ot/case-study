@@ -14,7 +14,7 @@ export default function FunnelChart() {
 
   // fetching data
   useEffect(() => {
-    axios.get("https://localhost:8080/api/data").then((res) => {
+    axios.get("http://localhost:8080/api/data").then((res) => {
       setData(
         res.data
           .map((e) => {
