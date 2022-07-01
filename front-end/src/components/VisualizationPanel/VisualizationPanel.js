@@ -46,9 +46,6 @@ export default function VisualizationPanel({
           onPointerUp={(e) => {
             displayChart();
           }}
-          onTouchEnd={(e) => {
-            displayChart();
-          }}
           ref={provided.innerRef}
           style={{
             backgroundColor: snapshot.isDraggingOver ? "blue" : "white",
