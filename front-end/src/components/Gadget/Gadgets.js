@@ -15,12 +15,17 @@ export default function Gadgets({ setSelectedChart }) {
   return (
     <div>
       <div className="hamburger-menu">
-        <input id="menu__toggle" type="checkbox" />
-        <label className="menu__btn" htmlFor="menu__toggle">
-          <span></span>
-        </label>
-
-        <ul className="menu__box">
+        {/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        ) && screen.width<=950? (
+          <>
+            <input id="menu__toggle" type="checkbox" />
+            <label className="menu__btn" htmlFor="menu__toggle">
+              <span></span>
+            </label>
+          </>
+        ) : null}
+        <div className="menu__box">
           <Droppable
             droppableId="droppable-2"
             type="graph"
@@ -47,6 +52,9 @@ export default function Gadgets({ setSelectedChart }) {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      onPointerDown={(e) => {
+                        select(e, "pie");
+                      }}
                     >
                       <img
                         src={pieChart}
@@ -54,9 +62,6 @@ export default function Gadgets({ setSelectedChart }) {
                         height={70}
                         width={"40%"}
                         draggable="true"
-                        onPointerDown={(e) => {
-                          select(e, "pie");
-                        }}
                       />
                       <span style={{ marginLeft: "15px " }}>Pie Chart</span>
                       <br />
@@ -75,6 +80,9 @@ export default function Gadgets({ setSelectedChart }) {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      onPointerDown={(e) => {
+                        select(e, "line");
+                      }}
                     >
                       <img
                         src={lineChart}
@@ -82,9 +90,6 @@ export default function Gadgets({ setSelectedChart }) {
                         height={60}
                         width={"40%"}
                         draggable="true"
-                        onPointerDown={(e) => {
-                          select(e, "line");
-                        }}
                       />
                       <span style={{ marginLeft: "15px " }}>Line Chart</span>{" "}
                       <br />
@@ -103,6 +108,9 @@ export default function Gadgets({ setSelectedChart }) {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      onPointerDown={(e) => {
+                        select(e, "funnel");
+                      }}
                     >
                       <img
                         src={funnelChart}
@@ -110,9 +118,6 @@ export default function Gadgets({ setSelectedChart }) {
                         height={60}
                         width={"40%"}
                         draggable="true"
-                        onPointerDown={(e) => {
-                          select(e, "funnel");
-                        }}
                       />
                       <span style={{ marginLeft: "15px " }}>Funnel Chart</span>
                       <br />
@@ -123,7 +128,7 @@ export default function Gadgets({ setSelectedChart }) {
               </div>
             )}
           </Droppable>
-        </ul>
+        </div>
       </div>
     </div>
   );
